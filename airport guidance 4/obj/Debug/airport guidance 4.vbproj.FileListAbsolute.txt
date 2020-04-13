@@ -1,0 +1,34 @@
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.exe.config
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.exe
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.pdb
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.xml
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.vbprojAssemblyReference.cache
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.MapWindow.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.Resources.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.vbproj.GenerateResource.cache
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.exe
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.xml
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.pdb
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.MapResult.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.Password.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.SelectDest.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.BadPassword.resources
+C:\Users\larsk\source\repos\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.SetLocationMap.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.vbprojAssemblyReference.cache
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.BadPassword.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.MapResult.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.MapWindow.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.Resources.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.Password.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.SelectDest.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.SetLocationMap.resources
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.vbproj.GenerateResource.cache
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.vbproj.CoreCompileInputs.cache
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.exe
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.xml
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport guidance 4.pdb
+D:\C#补习\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.exe.config
+D:\C#补习\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.exe
+D:\C#补习\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.pdb
+D:\C#补习\airport guidance 4\airport guidance 4\bin\Debug\airport guidance 4.xml
+D:\C#补习\airport guidance 4\airport guidance 4\obj\Debug\airport_guidance_4.Gate.resources
