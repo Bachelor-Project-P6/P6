@@ -23,7 +23,7 @@ namespace Airport_guidance
         {
             Gate open = new Gate();
             open.ShowDialog();
-            Close();
+            
         }
 
         private void btnRestroom_Click(object sender, EventArgs e)

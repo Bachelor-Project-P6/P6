@@ -22,43 +22,50 @@ namespace Airport_guidance
         {
             int intHandler1;
             MapWinGIS.Shapefile shapefile1 = new MapWinGIS.Shapefile();
-            shapefile1.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Form.shp");
+            shapefile1.Open(@"D:\C#补习\Airport guidance\Aalborg new\Form.shp");
             intHandler1 = axMap1.AddLayer(shapefile1, true);
 
             int intHandler2;
             MapWinGIS.Shapefile shapefile2 = new MapWinGIS.Shapefile();
-            shapefile2.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\gang.shp");
+            shapefile2.Open(@"D:\C#补习\Airport guidance\Aalborg new\gang.shp");
             intHandler2 = axMap1.AddLayer(shapefile2, true);
 
             int intHandler3;
             MapWinGIS.Shapefile shapefile3 = new MapWinGIS.Shapefile();
-            shapefile3.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Indgang.shp");
+            shapefile3.Open(@"D:\C#补习\Airport guidance\Aalborg new\Indgang.shp");
             intHandler3 = axMap1.AddLayer(shapefile3, true);
-
-            int intHandler4;
-            MapWinGIS.Shapefile shapefile4 = new MapWinGIS.Shapefile();
-            shapefile4.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Navlines.shp");
-            intHandler4 = axMap1.AddLayer(shapefile4, true);
-
-            int intHandler5;
-            MapWinGIS.Shapefile shapefile5 = new MapWinGIS.Shapefile();
-            shapefile5.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Navnnodes.shp");
-            intHandler5 = axMap1.AddLayer(shapefile5, true);
 
             int intHandler6;
             MapWinGIS.Shapefile shapefile6 = new MapWinGIS.Shapefile();
-            shapefile6.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Shape.shp");
+            shapefile6.Open(@"D:\C#补习\Airport guidance\Aalborg new\Shape .shp");
             intHandler6 = axMap1.AddLayer(shapefile6, true);
+
+            int intHandler4;
+            MapWinGIS.Shapefile shapefile4 = new MapWinGIS.Shapefile();
+            shapefile4.Open(@"D:\C#补习\Airport guidance\Aalborg new\navlines.shp");
+            intHandler4 = axMap1.AddLayer(shapefile4, true);
+
+
+
+            //int intHandler6;
+            //MapWinGIS.Shapefile shapefile6 = new MapWinGIS.Shapefile();
+            //shapefile6.Open(@"D:\C#补习\Airport guidance\Aalborg new\Shape .shp");
+            //intHandler6 = axMap1.AddLayer(shapefile6, true);
 
             int intHandler7;
             MapWinGIS.Shapefile shapefile7 = new MapWinGIS.Shapefile();
-            shapefile7.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\Stairs.shp");
+            shapefile7.Open(@"D:\C#补习\Airport guidance\Aalborg new\Stairs.shp");
             intHandler7 = axMap1.AddLayer(shapefile7, true);
 
             int intHandler8;
             MapWinGIS.Shapefile shapefile8 = new MapWinGIS.Shapefile();
-            shapefile8.Open(@"D:\C#补习\airport guidance 4_ny\Aalborg airport\WC.shp");
+            shapefile8.Open(@"D:\C#补习\Airport guidance\Aalborg new\WC.shp");
             intHandler8 = axMap1.AddLayer(shapefile8, true);
+
+            int intHandler5;
+            MapWinGIS.Shapefile shapefile5 = new MapWinGIS.Shapefile();
+            shapefile5.Open(@"D:\C#补习\Airport guidance\Aalborg new\navnodes.shp");
+            intHandler5 = axMap1.AddLayer(shapefile5, true);
 
         }
 
@@ -77,6 +84,16 @@ namespace Airport_guidance
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void axMap2_MouseDownEvent(object sender, AxMapWinGIS._DMapEvents_MouseDownEvent e)
+        {
+
+        }
+
+        private void axMap1_MouseDownEvent(object sender, AxMapWinGIS._DMapEvents_MouseDownEvent e)
         {
 
         }

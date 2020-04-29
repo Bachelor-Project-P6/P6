@@ -19,86 +19,72 @@ namespace Airport_guidance
 
         private void btnGate1_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+           
         }
 
         private void btnGate2_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
         }
 
         private void btnGate3_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
         }
 
         private void btnGate4_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
         }
 
         private void btnGate5_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+           
         }
 
         private void btnGate6_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+           
+            
         }
 
         private void btnGate7_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
+            
         }
 
         private void btnGate8_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
+            
         }
 
         private void btnGate9_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
         }
 
         private void btnGate10_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
         }
 
         private void btnGate11_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            open.ShowDialog();
-            Close();
+            
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            SelectDest open = new SelectDest();
-            open.ShowDialog();
             Close();
+            
+        }
+
+        private void Gate_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

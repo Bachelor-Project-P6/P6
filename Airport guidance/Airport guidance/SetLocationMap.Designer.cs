@@ -79,6 +79,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "SetLocationMap";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SetLocationMap_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SetLocationMap_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

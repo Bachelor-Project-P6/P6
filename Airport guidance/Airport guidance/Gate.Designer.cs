@@ -181,6 +181,7 @@
             this.Controls.Add(this.btnGate1);
             this.Name = "Gate";
             this.Text = "Gate";
+            this.Load += new System.EventHandler(this.Gate_Load);
             this.ResumeLayout(false);
 
         }

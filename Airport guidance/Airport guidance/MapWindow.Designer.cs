@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapWindow));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSelectDest = new System.Windows.Forms.Button();
             this.btnPassword = new System.Windows.Forms.Button();
             this.axMap1 = new AxMapWinGIS.AxMap();
+            this.axMap2 = new AxMapWinGIS.AxMap();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axMap1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -75,12 +79,30 @@
             this.axMap1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap1.OcxState")));
             this.axMap1.Size = new System.Drawing.Size(1505, 638);
             this.axMap1.TabIndex = 4;
+            this.axMap1.MouseDownEvent += new AxMapWinGIS._DMapEvents_MouseDownEventHandler(this.axMap1_MouseDownEvent);
+            // 
+            // axMap2
+            // 
+            this.axMap2.Enabled = true;
+            this.axMap2.Location = new System.Drawing.Point(966, 0);
+            this.axMap2.Name = "axMap2";
+            this.axMap2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap2.OcxState")));
+            this.axMap2.Size = new System.Drawing.Size(8, 8);
+            this.axMap2.TabIndex = 5;
+            this.axMap2.MouseDownEvent += new AxMapWinGIS._DMapEvents_MouseDownEventHandler(this.axMap2_MouseDownEvent);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1836, 1009);
+            this.Controls.Add(this.axMap2);
             this.Controls.Add(this.axMap1);
             this.Controls.Add(this.btnPassword);
             this.Controls.Add(this.btnSelectDest);
@@ -91,6 +113,7 @@
             this.Load += new System.EventHandler(this.MapWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axMap1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -101,5 +124,7 @@
         private System.Windows.Forms.Button btnSelectDest;
         private System.Windows.Forms.Button btnPassword;
         private AxMapWinGIS.AxMap axMap1;
+        private AxMapWinGIS.AxMap axMap2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
