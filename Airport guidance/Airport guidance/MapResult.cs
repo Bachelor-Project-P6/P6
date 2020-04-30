@@ -12,6 +12,7 @@ namespace Airport_guidance
 {
     public partial class MapResult : Form
     {
+        DateTime idleTimer;
         public MapResult()
         {
             InitializeComponent();
@@ -30,5 +31,37 @@ namespace Airport_guidance
             open.ShowDialog();
             Close();
         }
+
+        private void MapResult_Load(object sender, EventArgs e)
+        {
+            idleTimer = DateTime.Now;
+            timer1.Start();
+            timer1.Interval = 5000;
+
+        }
+
+        private void MapResult_MouseMove(object sender, MouseEventArgs e)
+        {
+            idleTimer = DateTime.Now;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            DateTime checkTime = DateTime.Now;
+            TimeSpan span = checkTime.Subtract(idleTimer);
+            if (span.Seconds > 20)
+            {
+                MapWindow open = new MapWindow();
+                timer1.Stop();
+                open.ShowDialog();
+                Close();
+                Dispose(true);
+            }
+        }
+
+        
+
+        
     }
 }

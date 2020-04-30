@@ -245,7 +245,7 @@ namespace Airport_guidance
         {
             DateTime checkTime = DateTime.Now;
             TimeSpan span = checkTime.Subtract(idleTimer);
-            if (span.Seconds > 30)
+            if (span.Seconds > 10)
             {
                 MapWindow open = new MapWindow();
                 timer1.Stop();

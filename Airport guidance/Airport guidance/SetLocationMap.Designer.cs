@@ -33,7 +33,9 @@
             this.btnCancelNode = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Timer1 = new System.Windows.Forms.Timer(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -83,6 +85,7 @@
             this.Load += new System.EventHandler(this.SetLocationMap_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SetLocationMap_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +97,6 @@
         private System.Windows.Forms.Button btnCancelNode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer Timer1;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

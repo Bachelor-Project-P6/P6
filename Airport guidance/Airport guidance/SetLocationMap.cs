@@ -25,12 +25,23 @@ namespace Airport_guidance
             open.ShowDialog();
             Close();
         }
+        private void SetLocationMap_Load(object sender, EventArgs e)
+        {
+            idleTimer = DateTime.Now;
+            Timer1.Start();
+            Timer1.Interval = 5000;
+        }
+        
 
+        private void SetLocationMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            idleTimer = DateTime.Now;
+        }
         private void Timer1_Tick(object sender, EventArgs e)
         {
             DateTime checkTime = DateTime.Now;
             TimeSpan span = checkTime.Subtract(idleTimer);
-            if (span.Seconds > 40)
+            if (span.Seconds > 30)
             {
                 MapWindow open = new MapWindow();
                 Timer1.Stop();
@@ -40,16 +51,6 @@ namespace Airport_guidance
             }
         }
 
-        private void SetLocationMap_MouseMove(object sender, MouseEventArgs e)
-        {
-            idleTimer = DateTime.Now;
-        }
 
-        private void SetLocationMap_Load(object sender, EventArgs e)
-        {
-            idleTimer = DateTime.Now;
-            Timer1.Start();
-            Timer1.Interval = 5000;
-        }
     }
 }

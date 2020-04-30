@@ -64,12 +64,16 @@ namespace Airport_guidance
             timer1.Start();
             timer1.Interval = 5000;
         }
-
+        private void SelectDest_MouseMove(object sender, MouseEventArgs e)
+        {
+            idleTimer = DateTime.Now;
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             DateTime checkTime = DateTime.Now;
             TimeSpan span = checkTime.Subtract(idleTimer);
-            if (span.Seconds > 20)
+            if (span.Seconds > 30)
             {
                 MapWindow open = new MapWindow();
                 timer1.Stop();
@@ -79,11 +83,6 @@ namespace Airport_guidance
             }
         }
 
-       
-
-        private void SelectDest_MouseMove(object sender, MouseEventArgs e)
-        {
-            idleTimer = DateTime.Now;
-        }
+        
     }
 }
