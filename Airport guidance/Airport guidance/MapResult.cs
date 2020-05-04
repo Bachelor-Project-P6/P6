@@ -21,6 +21,7 @@ namespace Airport_guidance
         private void btnSelectDest_Click(object sender, EventArgs e)
         {
             SelectDest open = new SelectDest();
+            Destinations.Dest.Clear();
             open.ShowDialog();
             Close();
         }
@@ -28,6 +29,7 @@ namespace Airport_guidance
         private void btnPassword_Click(object sender, EventArgs e)
         {
             Password open = new Password();
+            Destinations.Dest.Clear();
             open.ShowDialog();
             Close();
         }
@@ -54,6 +56,7 @@ namespace Airport_guidance
             {
                 MapWindow open = new MapWindow();
                 timer1.Stop();
+                Destinations.Dest.Clear();
                 open.ShowDialog();
                 Close();
                 Dispose(true);

@@ -22,6 +22,7 @@ namespace Airport_guidance
         private void btnCancelNode_Click(object sender, EventArgs e)
         {
             MapWindow open = new MapWindow();
+            Destinations.Dest.Clear();
             open.ShowDialog();
             Close();
         }
@@ -46,6 +47,7 @@ namespace Airport_guidance
                 MapWindow open = new MapWindow();
                 Timer1.Stop();
                 open.ShowDialog();
+                Destinations.Dest.Clear();
                 Close();
                 Dispose(true);
             }

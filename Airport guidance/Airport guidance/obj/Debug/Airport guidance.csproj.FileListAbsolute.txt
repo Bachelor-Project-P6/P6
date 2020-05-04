@@ -35,3 +35,23 @@ D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.
 D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.CoreCompileInputs.cache
 D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.exe
 D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe.config
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\AxInterop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csprojAssemblyReference.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\AxInterop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.ResolveComReference.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.BadPassword.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Gate.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapResult.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapWindow.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Password.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SelectDest.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Properties.Resources.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SetLocationMap.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.GenerateResource.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.pdb

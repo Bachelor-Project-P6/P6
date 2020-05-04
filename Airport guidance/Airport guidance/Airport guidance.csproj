@@ -76,6 +76,7 @@
     <Compile Include="Password.Designer.cs">
       <DependentUpon>Password.cs</DependentUpon>
     </Compile>
+    <Compile Include="Queues.cs" />
     <Compile Include="SetLocationMap.cs">
       <SubType>Form</SubType>
     </Compile>
