@@ -52,6 +52,7 @@
     <Compile Include="BadPassword.Designer.cs">
       <DependentUpon>BadPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Graph.cs" />
     <Compile Include="Gate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +77,7 @@
     <Compile Include="Password.Designer.cs">
       <DependentUpon>Password.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Dijkstra.cs" />
     <Compile Include="Queues.cs" />
     <Compile Include="SetLocationMap.cs">
       <SubType>Form</SubType>
@@ -110,13 +112,14 @@
       <DependentUpon>SelectDest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SetLocationMap.resx">
       <DependentUpon>SetLocationMap.cs</DependentUpon>
@@ -130,6 +133,47 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="shapefiles\Form.dbf" />
+    <None Include="shapefiles\Form.prj" />
+    <None Include="shapefiles\Form.qpj" />
+    <None Include="shapefiles\Form.shp" />
+    <None Include="shapefiles\Form.shx" />
+    <None Include="shapefiles\gang.dbf" />
+    <None Include="shapefiles\gang.prj" />
+    <None Include="shapefiles\gang.qpj" />
+    <None Include="shapefiles\gang.shp" />
+    <None Include="shapefiles\gang.shx" />
+    <None Include="shapefiles\Indgang.dbf" />
+    <None Include="shapefiles\Indgang.prj" />
+    <None Include="shapefiles\Indgang.qpj" />
+    <None Include="shapefiles\Indgang.shp" />
+    <None Include="shapefiles\Indgang.shx" />
+    <None Include="shapefiles\navlines.cpg" />
+    <None Include="shapefiles\navlines.dbf" />
+    <None Include="shapefiles\navlines.prj" />
+    <None Include="shapefiles\navlines.shp" />
+    <None Include="shapefiles\navlines.shx" />
+    <None Include="shapefiles\navnodes.cpg" />
+    <None Include="shapefiles\navnodes.dbf" />
+    <None Include="shapefiles\navnodes.prj" />
+    <None Include="shapefiles\navnodes.shp" />
+    <None Include="shapefiles\navnodes.shx" />
+    <None Include="shapefiles\Shape .dbf" />
+    <None Include="shapefiles\Shape .prj" />
+    <None Include="shapefiles\Shape .qpj" />
+    <None Include="shapefiles\Shape .shp" />
+    <None Include="shapefiles\Shape .shx" />
+    <None Include="shapefiles\Shape.qpj" />
+    <None Include="shapefiles\Stairs.dbf" />
+    <None Include="shapefiles\Stairs.prj" />
+    <None Include="shapefiles\Stairs.qpj" />
+    <None Include="shapefiles\Stairs.shp" />
+    <None Include="shapefiles\Stairs.shx" />
+    <None Include="shapefiles\WC.dbf" />
+    <None Include="shapefiles\WC.prj" />
+    <None Include="shapefiles\WC.qpj" />
+    <None Include="shapefiles\WC.shp" />
+    <None Include="shapefiles\WC.shx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

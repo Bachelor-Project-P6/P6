@@ -13,6 +13,7 @@ namespace Airport_guidance
 
     public partial class SetLocationMap : Form
     {
+        public static int Loc = 370;
         DateTime idleTimer;
         public SetLocationMap()
         {
