@@ -77,7 +77,7 @@
     <Compile Include="Password.Designer.cs">
       <DependentUpon>Password.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Dijkstra.cs" />
+    <Compile Include="Dijkstra.cs" />
     <Compile Include="Queues.cs" />
     <Compile Include="SetLocationMap.cs">
       <SubType>Form</SubType>

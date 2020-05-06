@@ -123,12 +123,6 @@ public class NodeList<T> : Collection<Node<T>>
             nodeSet.Add(new GraphNode<T>(value));
         }
 
-        public void AddDirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
-        {
-            from.Neighbors.Add(to);
-            from.Costs.Add(cost);
-        }
-
         public void AddUndirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
         {
             from.Neighbors.Add(to);

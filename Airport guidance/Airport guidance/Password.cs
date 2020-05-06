@@ -25,6 +25,25 @@ namespace Airport_guidance
             timer1.Start();
             timer1.Interval = 5000;
         }
+        private void Password_MouseMove(object sender, MouseEventArgs e)
+        {
+            idleTimer = DateTime.Now;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime checkTime = DateTime.Now;
+            TimeSpan span = checkTime.Subtract(idleTimer);
+            if (span.Seconds > 30)
+            {
+                MapWindow open = new MapWindow();
+                timer1.Stop();
+                open.ShowDialog();
+                Close();
+                Dispose(true);
+            }
+        }
+
         private void txtPasswordbox_TextChanged(object sender, EventArgs e)
         {
 
@@ -221,7 +240,10 @@ namespace Airport_guidance
             {
                 SetLocationMap open = new SetLocationMap();
                 open.ShowDialog();
+                timer1.Stop();
+                open.ShowDialog();
                 Close();
+                Dispose(true);
             }
             else
             {
@@ -234,28 +256,11 @@ namespace Airport_guidance
         {
             MapWindow open = new MapWindow();
             open.ShowDialog();
+            timer1.Stop();
+            open.ShowDialog();
             Close();
+            Dispose(true);
         }
-        private void Password_MouseMove(object sender, MouseEventArgs e)
-        {
-            idleTimer = DateTime.Now;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DateTime checkTime = DateTime.Now;
-            TimeSpan span = checkTime.Subtract(idleTimer);
-            if (span.Seconds > 10)
-            {
-                MapWindow open = new MapWindow();
-                timer1.Stop();
-                open.ShowDialog();
-                Close();
-                Dispose(true);
-            }
-
-        
-    }
     }
 }
 

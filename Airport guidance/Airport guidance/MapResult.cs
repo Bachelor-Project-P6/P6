@@ -23,7 +23,10 @@ namespace Airport_guidance
             SelectDest open = new SelectDest();
             Destinations.Dest.Clear();
             open.ShowDialog();
+            timer1.Stop();
+            open.ShowDialog();
             Close();
+            Dispose(true);
         }
 
         private void btnPassword_Click(object sender, EventArgs e)
@@ -31,7 +34,10 @@ namespace Airport_guidance
             Password open = new Password();
             Destinations.Dest.Clear();
             open.ShowDialog();
+            timer1.Stop();
+            open.ShowDialog();
             Close();
+            Dispose(true);
         }
 
         private void MapResult_Load(object sender, EventArgs e)
