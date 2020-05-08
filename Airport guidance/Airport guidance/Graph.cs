@@ -12,7 +12,7 @@ namespace Airport_guidance
     {
         // Private member-variables
         private T data;
-        private NodeList<T> neighbors = null;
+        public NodeList<T> neighbors = null;
 
         public Node() { }
         public Node(T data) : this(data, null) { }
@@ -34,7 +34,7 @@ namespace Airport_guidance
             }
         }
 
-        protected NodeList<T> Neighbors
+        public NodeList<T> Neighbors
         {
             get
             {
@@ -123,13 +123,13 @@ public class NodeList<T> : Collection<Node<T>>
             nodeSet.Add(new GraphNode<T>(value));
         }
 
-        public void AddUndirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
+        public void AddUndirectedEdge(GraphNode<T> from, GraphNode<T> to, int costs)
         {
             from.Neighbors.Add(to);
-            from.Costs.Add(cost);
+            from.Costs.Add(costs);
 
             to.Neighbors.Add(from);
-            to.Costs.Add(cost);
+            to.Costs.Add(costs);
         }
 
         public bool Contains(T value)

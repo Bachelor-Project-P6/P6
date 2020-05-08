@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MapWinGIS;
 
 namespace Airport_guidance
 {
 
     public partial class SetLocationMap : Form
     {
+        //Will probably be converted to a cell value of the vertex.
         public static int Loc = 370;
         DateTime idleTimer;
         public SetLocationMap()

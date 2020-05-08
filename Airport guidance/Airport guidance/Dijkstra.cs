@@ -12,62 +12,75 @@ namespace Airport_guidance.Properties
     {
         int s = SetLocationMap.Loc;
         string d = null;
-        public void buildgraph()
+        
+        public void dijkstra(int s, string d)
         {
+            //Loading the graph with vertices and edges.
             Shapefile edge = new Shapefile();
             edge.Open("..\\..\\shapefiles\\navlines.shp");
-
             Shapefile vertex = new Shapefile();
             vertex.Open("..\\..\\shapefiles\\navnodes.shp");
 
-            while (Destinations.Dest.Count != 0) ;
-
-            //Making a graph to populate with vertices
-            Graph<object> network = new Graph<object>();
-
-            for (int i = 0; i < vertex.NumShapes; i++)
-            {
-                network.AddNode(vertex.get_CellValue(1, i));
-            }
-            for (int j = 0; j < edge.NumShapes; j++)
-            {
-                //Defines neighbors in the graph by generating new nodes (vertices) as new GraphNodes, and defines the "cost" of going between them as the Int. The cells loaded are "source", "target" and "length".
-                { network.AddUndirectedEdge(new GraphNode<object>(edge.get_CellValue(1, j)), new GraphNode<object>(edge.get_CellValue(2, j)), Convert.ToInt32(edge.get_CellValue(3, j))); };
-            }
-            //With this the routing network has been represented in the graph.
-        }
-
-        //Method uses the graph defined above, a source (initially the device location) and destinations from the queue Dest.
-        public void dijkstra(Graph<object> network, int s, string d)
-        {
             //Loads a destination from the queue and creates an int to keep the actual node chosen as the endpoint of the route.
             d = Destinations.Dest.Dequeue();
             int end;
 
-            double[] dist = new double[network.Count];
-            SortedSet<int> Q = new SortedSet<int>();
-            SortedSet<int> S = new SortedSet<int>();
-            int[] prev = new int[network.Count];
+            //Array with shortest distance from source to every other node.
+            double[] dist = new double[vertex.NumShapes];
+            //Collection of nodes that need to be examined.
+            List<int> Q = new List<int>();
+            //Collection of nodes that has already been examined
+            List<int> S = new List<int>();
+            //Array pointing to the previous node on the route back to the source.
+            int[] prev = new int[vertex.NumShapes];
+            //Variable to identify the last examined node.
+            int active = new int();
 
-            for (int i = 0; i < network.Count; i++)
+            //Setting the distance to all nodes to infinity and adding them all to Q.
+            for (int i = 0; i < vertex.NumShapes; i++)
             {
                 dist[i] = int.MaxValue;
-                Q.Add(Convert.ToInt32(network.Nodes.FindByValue(i)));
+                Q.Add(Convert.ToInt32(vertex.get_CellValue(1, i)));
             }
-            prev[0] = -1;
-            dist[s] = 0;
-            S.Add(s);
 
-            for (int i = 0; i < network.Count; i++)
+            //Making it so that there is to node before the source and the distance to the source is 0.
+            prev[Convert.ToInt32(vertex.get_CellValue(1, s))] = -1;
+            dist[Convert.ToInt32(vertex.get_CellValue(1, s))] = 0;
+            active = Convert.ToInt32(vertex.get_CellValue(1, s));
+
+            while (Q != null)
             {
-                int u = Q.Min();
-                foreach (NodeList<object> neighbors in )
+                for (int v = 0; v < edge.NumShapes; v++) 
                 {
+                    //Finds neighbors of active node.
+                    if ((Convert.ToInt32(edge.get_CellValue(1, v))) == active)
+                    {
+                        //Skal have Q til at returnere nabo til "active"
+                        int u = Q.Min();
 
+                        S.Add(Convert.ToInt32(vertex.get_CellValue(1, u)));
+                        double alt = Convert.ToDouble(edge.get_CellValue(3, v)) + dist[u];
+                        if (alt < dist[v])
+                        {
+                            dist[v] = alt;
+                        }
+                    } 
+                    else if ((Convert.ToInt32(edge.get_CellValue(2, v))) == active)
+                    {
+                        int u = Q.Min();
+
+                        S.Add(Convert.ToInt32(vertex.get_CellValue(1, u)));
+                        double alt = Convert.ToDouble(edge.get_CellValue(3, v)) + dist[u];
+                        if (alt < dist[v])
+                        {
+                            dist[v] = alt;
+                        }
+                    }
                 }
-            }
 
-            s = end;
+                s = end;
+                end = d;
+            }
         }
     }
 }
