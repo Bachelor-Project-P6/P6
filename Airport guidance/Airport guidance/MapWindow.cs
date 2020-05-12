@@ -12,7 +12,6 @@ namespace Airport_guidance
 {
     public partial class MapWindow : Form
     {
-       
         public MapWindow()
         {
             InitializeComponent();
@@ -38,6 +37,25 @@ namespace Airport_guidance
             int intHandler6;
             MapWinGIS.Shapefile shapefile6 = new MapWinGIS.Shapefile();
             shapefile6.Open("..\\..\\shapefiles\\Shape .shp");
+            string myLabel;
+            //define two double variables to use as a coordinates for label position
+            double x, y;
+            for (int i = 0; i < shapefile6.NumShapes - 1; i++)
+            {
+                //assign the value of the cells of the field number zero to the label
+                myLabel = System.Convert.ToString(
+                    shapefile6.get_CellValue(1, i));
+                //Calculate the x position for the label
+                x = shapefile6.get_Shape(i).Extents.xMin +
+                    (shapefile6.get_Shape(i).Extents.xMax -
+            shapefile6.get_Shape(i).Extents.xMin) / 2;
+                //Calculate the y position for the label
+                y = shapefile6.get_Shape(i).Extents.yMin +
+                    (shapefile6.get_Shape(i).Extents.yMax -
+            shapefile6.get_Shape(i).Extents.yMin) / 2;
+
+                shapefile6.Labels.AddLabel(myLabel, x, y, 0, -1);
+            }
             intHandler6 = axMap1.AddLayer(shapefile6, true);
 
             int intHandler3;
@@ -59,7 +77,6 @@ namespace Airport_guidance
             MapWinGIS.Shapefile shapefile5 = new MapWinGIS.Shapefile();
             shapefile5.Open("..\\..\\shapefiles\\navnodes.shp");
             intHandler5 = axMap1.AddLayer(shapefile5, false);
-
         }
 
         private void btnPassword_Click(object sender, EventArgs e)
