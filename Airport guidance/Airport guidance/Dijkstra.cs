@@ -143,7 +143,7 @@ namespace Airport_guidance
             {
                 for (int j = 0; j < terminals.Length; j++)
                 {
-                    if ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1) { eroute.Enqueue(j); }
+                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1))) { eroute.Enqueue(j); }
                 }
                 vroute.Clear();
             }
