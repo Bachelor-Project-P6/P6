@@ -230,8 +230,8 @@ namespace Airport_guidance
 
         private void keyBack_Click(object sender, EventArgs e)
         {
-            txtPasswordbox.Text = txtPasswordbox.Text.Remove(txtPasswordbox.Text.Length - 1);
-
+            if (txtPasswordbox.Text.Length > 0)
+            { txtPasswordbox.Text = txtPasswordbox.Text.Remove(txtPasswordbox.Text.Length - 1); }
         }
 
         private void btnEnterPassword_Click(object sender, EventArgs e)

@@ -29,29 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetLocationMap));
             this.btnCancelNode = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.axMap1 = new AxMapWinGIS.AxMap();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1833, 594);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // btnCancelNode
             // 
             this.btnCancelNode.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.btnCancelNode.Location = new System.Drawing.Point(564, 785);
+            this.btnCancelNode.Location = new System.Drawing.Point(423, 638);
+            this.btnCancelNode.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelNode.Name = "btnCancelNode";
-            this.btnCancelNode.Size = new System.Drawing.Size(616, 159);
+            this.btnCancelNode.Size = new System.Drawing.Size(462, 129);
             this.btnCancelNode.TabIndex = 1;
             this.btnCancelNode.Text = "CANCEL";
             this.btnCancelNode.UseVisualStyleBackColor = true;
@@ -61,9 +55,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.label1.Location = new System.Drawing.Point(415, 685);
+            this.label1.Location = new System.Drawing.Point(311, 557);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(993, 48);
+            this.label1.Size = new System.Drawing.Size(808, 39);
             this.label1.TabIndex = 2;
             this.label1.Text = "Please select the location for this device on the map.";
             // 
@@ -71,32 +66,42 @@
             // 
             this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // axMap1
+            // 
+            this.axMap1.Enabled = true;
+            this.axMap1.Location = new System.Drawing.Point(7, 9);
+            this.axMap1.Name = "axMap1";
+            this.axMap1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap1.OcxState")));
+            this.axMap1.Size = new System.Drawing.Size(1385, 548);
+            this.axMap1.TabIndex = 3;
+            this.axMap1.MouseDownEvent += new AxMapWinGIS._DMapEvents_MouseDownEventHandler(this.axMap1_MouseDownEvent);
+            // 
             // SetLocationMap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1865, 1013);
+            this.ClientSize = new System.Drawing.Size(1399, 823);
+            this.Controls.Add(this.axMap1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelNode);
-            this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SetLocationMap";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SetLocationMap_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SetLocationMap_MouseMove);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axMap1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCancelNode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer Timer1;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private AxMapWinGIS.AxMap axMap1;
     }
 }

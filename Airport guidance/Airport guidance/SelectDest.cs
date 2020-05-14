@@ -36,7 +36,7 @@ namespace Airport_guidance
 
         private void btnFood_Click(object sender, EventArgs e)
         {
-            Destinations.Dest.Enqueue("food");
+            Destinations.Dest.Enqueue("Food");
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -52,11 +52,18 @@ namespace Airport_guidance
         }
         private void btnShowResult_Click(object sender, EventArgs e)
         {
-            MapResult open = new MapResult();
-            timer1.Stop();
-            open.ShowDialog();
-            Close();
-            Dispose(true);
+            if (Destinations.Dest.Count == 0)
+            {
+                NoDest open = new NoDest();
+                open.ShowDialog();                
+            } else 
+            {
+                MapResult open = new MapResult();
+                timer1.Stop();
+                open.ShowDialog();
+                Close();
+                Dispose(true);
+            }
         }
         private void SelectDest_MouseMove(object sender, MouseEventArgs e)
         {

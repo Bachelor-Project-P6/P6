@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using AxMapWinGIS;
 using MapWinGIS;
 
-namespace Airport_guidance.Properties
+namespace Airport_guidance
 {
-    class Dijkstra
+    public class Dijkstra
     {
-        int s = SetLocationMap.Loc;
-        string d = null;
-
-        public void dijkstra(int s, string d)
+        public static string d = null;
+        public static void dijkstra(int s, Queue<string> dest)
         {
             //Loading the graph with vertices and edges.
             Shapefile edge = new Shapefile();
@@ -21,27 +19,46 @@ namespace Airport_guidance.Properties
             Shapefile vertex = new Shapefile();
             vertex.Open("..\\..\\shapefiles\\navnodes.shp");
 
+            //To facilitate faster processing by accessing the shapefile databases as few times as possible, all required values are loaded into arrays.
+            int[] vid = new int[vertex.NumShapes +1];
+            for (int i = 0; i < vid.Length; i++) { vid[i] = Convert.ToInt32(vertex.get_CellValue(1, i)); }
+            int[] eid = new int[edge.NumShapes +1];
+            for(int i = 0; i < eid.Length; i++) { eid[i] = Convert.ToInt32(edge.get_CellValue(0, i)); }
+            double[] length = new double[eid.Length];
+            for (int i = 0; i < length.Length; i++) { length[i] = Convert.ToDouble(edge.get_CellValue(3, i)); }
+            string[] type = new string[vid.Length];
+            for (int i = 0; i < type.Length; i++) { type[i] = Convert.ToString(vertex.get_CellValue(7, i)); }    
+
+            //Source and target pairs are stored as a two-tuple.
+            Tuple<int, int>[] terminals = new Tuple<int, int>[eid.Length];
+            for (int i = 0; i < eid.Length; i++) { terminals[i] = new Tuple<int, int> (Convert.ToInt32(edge.get_CellValue(1, i)), Convert.ToInt32(edge.get_CellValue(2, i))); }
+
             //Array with shortest distance from source to every other node.
-            double[] dist = new double[vertex.NumShapes];
+            double[] dist = new double[vid.Length];
             //Collection of nodes that need to be examined.
-            bool[] Q = new bool[vertex.NumShapes];
+            bool[] Q = new bool[vid.Length];
             //Array pointing to the previous node on the route back to the source.
-            int[] prev = new int[vertex.NumShapes];
+            int[] prev = new int[vid.Length];
             //Variable to identify the last examined node.
             int active = new int();
             int pos = new int();
             int checker = new int();
+            //Stack for reversing the order of stops on the route, since they will initially be ordered end to start.
+            Stack<int> temp = new Stack<int>();
             //A list to keep the stops on the final route.
-            List<int> route = new List<int>();
+            List<int> vroute = new List<int>();
+            //A queue for the lines of the route.
+            Queue<int> eroute = new Queue<int>();
+
 
             //Loop to make the entire algorithm run until the queue of destinations is empty.
-            while (Destinations.Dest != null)
+            while (Destinations.Dest.Count != 0)
             {
-                //Loads a destination from the queue and creates an int to keep the actual node chosen as the endpoint of the route.
+                //Loads a destination from the queue.
                 d = Destinations.Dest.Dequeue();
 
                 //Setting the distance to all nodes to infinity and adding them all to Q.
-                for (int i = 0; i < vertex.NumShapes; i++)
+                for (int i = 0; i < vid.Length; i++)
                 {
                     //Sets distance to all nodes to infinity.
                     dist[i] = int.MaxValue;
@@ -50,33 +67,33 @@ namespace Airport_guidance.Properties
                 }
 
                 //Making it so that there is to node before the source and the distance to the source is 0.
-                prev[Convert.ToInt32(vertex.get_CellValue(1, s))] = -1;
-                dist[Convert.ToInt32(vertex.get_CellValue(1, s))] = 0;
-                Q[Convert.ToInt32(vertex.get_CellValue(1, s))] = true;
+                prev[vid[s]] = -1;
+                dist[vid[s]] = 0;
+                Q[vid[s]] = true;
                 //Sets the first node to check as the source.
                 active = s;
 
                 //Loop that runs until it checks a node that has the desired "desttype".
-                while (Convert.ToString(vertex.get_CellValue(2, active)) != d)
+                while (type[active] != d)
                 {
-                    for (int v = 0; v < edge.NumShapes; v++)
+                    for (int v = 0; v < eid.Length; v++)
                     {
                         //Checks whether nodes are at the edge of our shortest spanning tree by checking if source and target are in Q.
-                        if (Q[Convert.ToInt32(edge.get_CellValue(1, v))] == true && Q[Convert.ToInt32(edge.get_CellValue(2, v))] == false)
+                        if (Q[terminals[v].Item1] == true && Q[terminals[v].Item2] == false)
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (Convert.ToDouble(edge.get_CellValue(3, v)) + dist[Convert.ToInt32(edge.get_CellValue(1, v))] < dist[Convert.ToInt32(edge.get_CellValue(2, v))])
+                            if (length[v] + dist[terminals[v].Item1] < dist[terminals[v].Item2])
                             {
-                                dist[Convert.ToInt32(edge.get_CellValue(2, v))] = Convert.ToDouble(edge.get_CellValue(3, v)) + dist[Convert.ToInt32(edge.get_CellValue(1, v))];
+                                dist[terminals[v].Item2] = length[v] + dist[terminals[v].Item1];
                             }
                         }
                         //Same as the above, only with source and target switched.
-                        if (Q[Convert.ToInt32(edge.get_CellValue(2, v))] == true && Q[Convert.ToInt32(edge.get_CellValue(1, v))] == false)
+                        if (Q[terminals[v].Item2] == true && Q[terminals[v].Item1] == false)
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (Convert.ToDouble(edge.get_CellValue(3, v)) + dist[Convert.ToInt32(edge.get_CellValue(2, v))] < dist[Convert.ToInt32(edge.get_CellValue(1, v))])
+                            if (length[v] + dist[terminals[v].Item2] < dist[terminals[v].Item1])
                             {
-                                dist[Convert.ToInt32(edge.get_CellValue(1, v))] = Convert.ToDouble(edge.get_CellValue(3, v)) + dist[Convert.ToInt32(edge.get_CellValue(2, v))];
+                                dist[terminals[v].Item1] = length[v] + dist[terminals[v].Item2];
                             }
                         }
                     }
@@ -84,40 +101,51 @@ namespace Airport_guidance.Properties
                     pos = 0;
                     for (int j = 0; j < dist.Length; j++)
                     {
-                        //Finds next node to check by finding the shorest distance.
-                        if (dist[Convert.ToInt32(vertex.get_CellValue(1, j))] < dist[pos] && Q[Convert.ToInt32(vertex.get_CellValue(1, j))] != true) { pos = j; }
+                        //Finds next node to check by finding the shortest distance.
+                        if (dist[vid[j]] < dist[pos] && Q[vid[j]] != true) { pos = j; }
                     }
                     active = pos;
                     //"Removes the checked node from Q" by switching the bool, adding it to the shortest spanning tree.
-                    Q[Convert.ToInt32(vertex.get_CellValue(1, active))] = true;
+                    Q[vid[active]] = true;
                     //Sets pointer from new node to the previous one.
                     pos = 0;
                     for (int l = 0; l < dist.Length; l++)
                     {
-                        //Gets previous node by finding the one nearest the active node. This finds the smallest 
-                        if (dist[Convert.ToInt32(vertex.get_CellValue(1, l))] - Convert.ToInt32(vertex.get_CellValue(1, active)) < dist[pos] && l != active)
+                        //Gets previous node by finding the one nearest the active node.
+                        if (dist[vid[l]] - dist[vid[active]] < dist[pos] && l != active)
                         {
-                            if (Convert.ToInt32(edge.get_CellValue(1, l)) == active || Convert.ToInt32(edge.get_CellValue(2, l)) == active) { pos = l; }
+                            if (terminals[l].Item1 == active || terminals[l].Item2 == active) { pos = l; }
                         }
+                        prev[vid[active]] = vid[pos];
                     }
 
-                    checker = active;
-                    if (Convert.ToString(vertex.get_CellValue(2, active)) == d) 
+                    checker = vid[active];
+                    if (type[active] == d) 
                     { 
-                        while(Convert.ToInt32(vertex.get_CellValue(1, checker)) != s)
+                        while(vid[checker] != vid[s])
                         {
                             for (int k = 0; k < prev.Length; k++)
                             {
-                                if (prev[k] == prev[Convert.ToInt32(vertex.get_CellValue(1, checker))])
+                                if (prev[k] == prev[checker])
                                 {
-                                    route.Add(prev[k]);
-                                    checker = prev[k]; //Forkert! Det giver id, skal bruge index.
+                                    //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k], which points to the INDEX that holds the VALUE of the previous node on the route.
+                                    temp.Push(prev[k]); //The line marked as the cause of the OutOfMemoryException
+                                    checker = prev[k];
                                 }
                             }
                         }
+                        for (int p = 0; p < temp.Count; p++) { vroute.Add(temp.Pop()); }
                         s = active; 
                     }
                 }
+            }
+            for (int i = 1; i < vroute.Count; i++)
+            {
+                for (int j = 0; j < terminals.Length; j++)
+                {
+                    if ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1) { eroute.Enqueue(j); }
+                }
+                vroute.Clear();
             }
         }
     }
