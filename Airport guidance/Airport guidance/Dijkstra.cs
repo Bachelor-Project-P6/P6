@@ -118,32 +118,33 @@ namespace Airport_guidance
                         }
                         prev[vid[active]] = vid[pos];
                     }
-
-                    checker = vid[active];
-                    if (type[active] == d) 
-                    { 
-                        while(vid[checker] != vid[s])
+                }
+                checker = vid[active];
+                if (type[active] == d)
+                {
+                    while (vid[checker] != vid[s])
+                    {
+                        for (int k = 0; k < prev.Length; k++)
                         {
-                            for (int k = 0; k < prev.Length; k++)
+                            if (prev[k] == prev[checker])
                             {
-                                if (prev[k] == prev[checker])
-                                {
-                                    //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k], which points to the INDEX that holds the VALUE of the previous node on the route.
-                                    temp.Push(prev[k]); //The line marked as the cause of the OutOfMemoryException
-                                    checker = prev[k];
-                                }
+                                //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k], which points to the INDEX that holds the VALUE of the previous node on the route.
+                                temp.Push(prev[k]); //The line marked as the cause of the OutOfMemoryException
+                                checker = prev[k];
                             }
                         }
-                        for (int p = 0; p < temp.Count; p++) { vroute.Add(temp.Pop()); }
-                        s = active; 
                     }
+                    for (int p = 0; p < temp.Count; p++) { vroute.Add(temp.Pop()); }
+                    s = active;
                 }
+
             }
             for (int i = 1; i < vroute.Count; i++)
             {
                 for (int j = 0; j < terminals.Length; j++)
                 {
-                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1))) { eroute.Enqueue(j); }
+                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1))) 
+                        { eroute.Enqueue(j); }
                 }
                 vroute.Clear();
             }
