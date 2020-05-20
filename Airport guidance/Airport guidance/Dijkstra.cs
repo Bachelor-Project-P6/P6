@@ -19,7 +19,8 @@ namespace Airport_guidance
             Shapefile vertex = new Shapefile();
             vertex.Open("..\\..\\shapefiles\\navnodes.shp");
 
-            //To facilitate faster processing by accessing the shapefile databases as few times as possible, all required values are loaded into arrays.
+            //To facilitate faster processing by accessing the shapefile databases as few times as possible,
+            //all required values are loaded into arrays.
             int[] vid = new int[vertex.NumShapes +1];
             for (int i = 0; i < vid.Length; i++) { vid[i] = Convert.ToInt32(vertex.get_CellValue(1, i)); }
             int[] eid = new int[edge.NumShapes +1];
@@ -31,7 +32,8 @@ namespace Airport_guidance
 
             //Source and target pairs are stored as a two-tuple.
             Tuple<int, int>[] terminals = new Tuple<int, int>[eid.Length];
-            for (int i = 0; i < eid.Length; i++) { terminals[i] = new Tuple<int, int> (Convert.ToInt32(edge.get_CellValue(1, i)), Convert.ToInt32(edge.get_CellValue(2, i))); }
+            for (int i = 0; i < eid.Length; i++) { terminals[i] = new Tuple<int, int>
+                    (Convert.ToInt32(edge.get_CellValue(1, i)), Convert.ToInt32(edge.get_CellValue(2, i))); }
 
             //Array with shortest distance from source to every other node.
             double[] dist = new double[vid.Length];
@@ -67,7 +69,7 @@ namespace Airport_guidance
                 }
 
                 //Making it so that there is to node before the source and the distance to the source is 0.
-                prev[vid[s]] = -1;
+                prev[vid[s]] = 0;
                 dist[vid[s]] = 0;
                 Q[vid[s]] = true;
                 //Sets the first node to check as the source.
@@ -78,58 +80,49 @@ namespace Airport_guidance
                 {
                     for (int v = 0; v < eid.Length; v++)
                     {
-                        //Checks whether nodes are at the edge of our shortest spanning tree by checking if source and target are in Q.
-                        if (Q[terminals[v].Item1] == true && Q[terminals[v].Item2] == false)
+                        //Checks whether nodes are at the edge of our shortest spanning tree by checking if source is in Q.
+                        if (Q[terminals[v].Item1] == false && terminals[v].Item2 == vid[active])
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (length[v] + dist[terminals[v].Item1] < dist[terminals[v].Item2])
+                            if (length[v] + dist[vid[active]] < dist[terminals[v].Item1])
                             {
-                                dist[terminals[v].Item2] = length[v] + dist[terminals[v].Item1];
+                                dist[terminals[v].Item1] = length[v] + dist[vid[active]];
+                                prev[terminals[v].Item1] = vid[active];
                             }
                         }
-                        //Same as the above, only with source and target switched.
-                        if (Q[terminals[v].Item2] == true && Q[terminals[v].Item1] == false)
+                        //Same as the above, only with the target switched.
+                        if (Q[terminals[v].Item2] == false && terminals[v].Item1 == vid[active])
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (length[v] + dist[terminals[v].Item2] < dist[terminals[v].Item1])
+                            if (length[v] + dist[vid[active]] < dist[terminals[v].Item2])
                             {
-                                dist[terminals[v].Item1] = length[v] + dist[terminals[v].Item2];
+                                dist[terminals[v].Item2] = length[v] + dist[vid[active]];
+                                prev[terminals[v].Item2] = vid[active];
                             }
                         }
                     }
-
                     pos = 0;
                     for (int j = 0; j < dist.Length; j++)
                     {
-                        //Finds next node to check by finding the shortest distance.
+                        //Finds next node to check by finding the shortest distance that is not in Q.
                         if (dist[vid[j]] < dist[pos] && Q[vid[j]] != true) { pos = j; }
                     }
                     active = pos;
                     //"Removes the checked node from Q" by switching the bool, adding it to the shortest spanning tree.
                     Q[vid[active]] = true;
-                    //Sets pointer from new node to the previous one.
-                    pos = 0;
-                    for (int l = 0; l < dist.Length; l++)
-                    {
-                        //Gets previous node by finding the one nearest the active node.
-                        if (dist[vid[l]] - dist[vid[active]] < dist[pos] && l != active)
-                        {
-                            if (terminals[l].Item1 == active || terminals[l].Item2 == active) { pos = l; }
-                        }
-                        prev[vid[active]] = vid[pos];
-                    }
                 }
                 checker = vid[active];
                 if (type[active] == d)
                 {
-                    while (vid[checker] != vid[s])
+                    while (checker != vid[s])
                     {
                         for (int k = 0; k < prev.Length; k++)
                         {
                             if (prev[k] == prev[checker])
                             {
-                                //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k], which points to the INDEX that holds the VALUE of the previous node on the route.
-                                temp.Push(prev[k]); //The line marked as the cause of the OutOfMemoryException
+                                //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k],
+                                //which points to the INDEX that holds the VALUE of the previous node on the route.
+                                temp.Push(prev[k]);
                                 checker = prev[k];
                             }
                         }
@@ -137,14 +130,15 @@ namespace Airport_guidance
                     for (int p = 0; p < temp.Count; p++) { vroute.Add(temp.Pop()); }
                     s = active;
                 }
-
             }
             for (int i = 1; i < vroute.Count; i++)
             {
                 for (int j = 0; j < terminals.Length; j++)
                 {
-                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 && vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 && vroute[i - 1] == terminals[j].Item1))) 
-                        { eroute.Enqueue(j); }
+                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 &&
+                        vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 &&
+                        vroute[i - 1] == terminals[j].Item1)))
+                    { eroute.Enqueue(j); }
                 }
                 vroute.Clear();
             }
