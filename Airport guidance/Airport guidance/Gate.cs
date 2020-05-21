@@ -76,6 +76,7 @@ namespace Airport_guidance
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+            Dispose(true);
         }
 
         private void Gate_Load(object sender, EventArgs e)

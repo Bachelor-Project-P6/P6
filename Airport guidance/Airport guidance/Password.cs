@@ -241,7 +241,6 @@ namespace Airport_guidance
                 SetLocationMap open = new SetLocationMap();
                 open.ShowDialog();
                 timer1.Stop();
-                open.ShowDialog();
                 Close();
                 Dispose(true);
             }

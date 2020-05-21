@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,7 +77,19 @@ namespace Airport_guidance
             int intHandler5;
             MapWinGIS.Shapefile shapefile5 = new MapWinGIS.Shapefile();
             shapefile5.Open("..\\..\\shapefiles\\navnodes.shp");
-            intHandler5 = axMap1.AddLayer(shapefile5, false);
+            intHandler5 = axMap1.AddLayer(shapefile5, true);
+
+            if (File.Exists("..\\..\\devloc.txt"))
+            {
+                SetLocationMap.Loc = Convert.ToInt32(File.ReadAllText("..\\..\\devloc.txt"));
+            }
+
+            for (int i = 0; i < shapefile4.NumShapes; i++) 
+            {
+                if (i == SetLocationMap.Loc) { shapefile5.set_ShapeIsHidden(i, false); }
+                else { shapefile5.set_ShapeIsHidden(i, true); }
+            }
+
         }
 
         private void btnPassword_Click(object sender, EventArgs e)
@@ -84,6 +97,7 @@ namespace Airport_guidance
             Password open = new Password();
             open.ShowDialog();
             Close();
+            Dispose(true);
         }
 
         private void btnSelectDest_Click(object sender, EventArgs e)
@@ -91,6 +105,7 @@ namespace Airport_guidance
             SelectDest open = new SelectDest();
             open.ShowDialog();
             Close();
+            Dispose(true);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

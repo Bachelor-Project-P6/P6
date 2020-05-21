@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace Airport_guidance
 
     public partial class SetLocationMap : Form
     {
-        //Will probably be converted to a cell value of the vertex.
+        
         public static int Loc = 370;
         DateTime idleTimer;
         public SetLocationMap()
@@ -22,13 +23,6 @@ namespace Airport_guidance
             InitializeComponent();
         }
 
-        private void btnCancelNode_Click(object sender, EventArgs e)
-        {
-            MapWindow open = new MapWindow();
-            Destinations.Dest.Clear();
-            open.ShowDialog();
-            Close();
-        }
         private void SetLocationMap_Load(object sender, EventArgs e)
         {
             idleTimer = DateTime.Now;
@@ -97,8 +91,21 @@ namespace Airport_guidance
             axMap1.SendMouseDown = true;
             axMap1.MouseDownEvent += axMap1_MouseDownEvent;
             axMap1.CursorMode = tkCursorMode.cmNone;
+
+            if (File.Exists("..\\..\\devloc.txt"))
+            {
+                Loc = Convert.ToInt32(File.ReadAllText("..\\..\\devloc.txt"));
+            }
         }
-        
+        private void btnCancelNode_Click(object sender, EventArgs e)
+        {
+            MapWindow open = new MapWindow();
+            Destinations.Dest.Clear();
+            Timer1.Stop();
+            open.ShowDialog();
+            Close();
+            Dispose();
+        }
 
         private void SetLocationMap_MouseMove(object sender, MouseEventArgs e)
         {
@@ -141,7 +148,7 @@ namespace Airport_guidance
                     }
                     else
                     {
-                        Loc = shapes[0];
+                        File.WriteAllText("..\\..\\devloc.txt", Convert.ToString(shapes[0]));
                         MessageBox.Show("Device location was selected. Node number " + shapes[0]);
                     }
                 }

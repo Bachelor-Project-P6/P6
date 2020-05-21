@@ -13,31 +13,10 @@ namespace Airport_guidance
     public partial class MapResult : Form
     {
         DateTime idleTimer;
+        double routelength = new double();
         public MapResult()
         {
             InitializeComponent();
-        }
-
-        private void btnSelectDest_Click(object sender, EventArgs e)
-        {
-            SelectDest open = new SelectDest();
-            Destinations.Dest.Clear();
-            open.ShowDialog();
-            timer1.Stop();
-            open.ShowDialog();
-            Close();
-            Dispose(true);
-        }
-
-        private void btnPassword_Click(object sender, EventArgs e)
-        {
-            Password open = new Password();
-            Destinations.Dest.Clear();
-            open.ShowDialog();
-            timer1.Stop();
-            open.ShowDialog();
-            Close();
-            Dispose(true);
         }
 
         private void MapResult_Load(object sender, EventArgs e)
@@ -98,6 +77,7 @@ namespace Airport_guidance
             int intHandler9;
             MapWinGIS.Shapefile shapefile4 = new MapWinGIS.Shapefile();
             shapefile4.Open("..\\..\\shapefiles\\navlines.shp");
+            shapefile4.DefaultDrawingOptions.LineWidth = 4;
             intHandler9 = axMap1.AddLayer(shapefile4, true);
 
             int intHandler5;
@@ -106,10 +86,35 @@ namespace Airport_guidance
             intHandler5 = axMap1.AddLayer(shapefile5, false);
 
             Dijkstra.dijkstra(SetLocationMap.Loc, Destinations.Dest);
-            
+
             for (int i = 0; i < shapefile4.NumShapes; i++) { shapefile4.set_ShapeIsHidden(i, true); }
-            for (int i = 10; i < 200; i++) { shapefile4.set_ShapeIsHidden(i, false); }
-            timeest.Text = "Estimated time to reach destination: ";
+            //for (int j = 0; j < Dijkstra.Route.eroute.Count; j++) { shapefile4.set_ShapeIsHidden(Dijkstra.Route.eroute.Dequeue(), false); }
+
+            routelength = 0;
+
+            List<int> holder = new List<int>();
+            for (int j = 0; j <= Dijkstra.Route.eroute.Count; j++) { holder.Add(Dijkstra.Route.eroute.Dequeue()); }
+
+            foreach (int line in holder)
+            {
+                shapefile4.set_ShapeIsHidden(line, false);
+                routelength += Convert.ToDouble(shapefile4.get_CellValue(3, line));
+            }
+            //for (int k = 0; k < holder.Count; k++)
+            //{
+            //    //for (int i = 0; i < shapefile4.NumShapes +1; i++)
+            //    //{
+            //    //    if (Convert.ToInt32(shapefile4.get_CellValue(0, i)) == holder[k])
+            //    //    {
+            //    //        shapefile4.set_ShapeIsHidden(i, false);
+            //    //        routelength = routelength + Convert.ToDouble(shapefile4.get_CellValue(3, i));
+            //    //    }
+            //    //}
+            //    shapefile4.set_ShapeIsHidden(holder[k], false);
+            //    routelength += Convert.ToDouble(shapefile4.get_CellValue(3, k));
+            //}
+            timeest.Text = String.Format("Estimated time to reach destination: {0} minutes", Math.Round((routelength / 1.4) / 60, 1));
+            holder.Clear();
         }
 
         private void MapResult_MouseMove(object sender, MouseEventArgs e)
@@ -131,6 +136,26 @@ namespace Airport_guidance
                 Close();
                 Dispose(true);
             }
+        }
+
+        private void btnSelectDest_Click(object sender, EventArgs e)
+        {
+            SelectDest open = new SelectDest();
+            Destinations.Dest.Clear();
+            timer1.Stop();
+            open.ShowDialog();
+            Close();
+            Dispose(true);
+        }
+
+        private void btnPassword_Click(object sender, EventArgs e)
+        {
+            Password open = new Password();
+            Destinations.Dest.Clear();
+            timer1.Stop();
+            open.ShowDialog();
+            Close();
+            Dispose(true);
         }
 
         private void axMap1_MouseDownEvent(object sender, AxMapWinGIS._DMapEvents_MouseDownEvent e)

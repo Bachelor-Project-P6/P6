@@ -11,6 +11,11 @@ namespace Airport_guidance
     public class Dijkstra
     {
         public static string d = null;
+
+        public class Route
+        {
+            public static Queue<int> eroute { get; set; } = new Queue<int>();
+        }
         public static void dijkstra(int s, Queue<string> dest)
         {
             //Loading the graph with vertices and edges.
@@ -21,17 +26,17 @@ namespace Airport_guidance
 
             //To facilitate faster processing by accessing the shapefile databases as few times as possible,
             //all required values are loaded into arrays.
-            int[] vid = new int[vertex.NumShapes +1];
+            int[] vid = new int[vertex.NumShapes +1]; //Vertex id
             for (int i = 0; i < vid.Length; i++) { vid[i] = Convert.ToInt32(vertex.get_CellValue(1, i)); }
-            int[] eid = new int[edge.NumShapes +1];
+            int[] eid = new int[edge.NumShapes +1]; //Edge id
             for(int i = 0; i < eid.Length; i++) { eid[i] = Convert.ToInt32(edge.get_CellValue(0, i)); }
-            double[] length = new double[eid.Length];
+            double[] length = new double[eid.Length]; //Edge length
             for (int i = 0; i < length.Length; i++) { length[i] = Convert.ToDouble(edge.get_CellValue(3, i)); }
-            string[] type = new string[vid.Length];
+            string[] type = new string[vid.Length]; //Vertex desttype
             for (int i = 0; i < type.Length; i++) { type[i] = Convert.ToString(vertex.get_CellValue(7, i)); }    
 
             //Source and target pairs are stored as a two-tuple.
-            Tuple<int, int>[] terminals = new Tuple<int, int>[eid.Length];
+            Tuple<int, int>[] terminals = new Tuple<int, int>[eid.Length]; //Edge source and target
             for (int i = 0; i < eid.Length; i++) { terminals[i] = new Tuple<int, int>
                     (Convert.ToInt32(edge.get_CellValue(1, i)), Convert.ToInt32(edge.get_CellValue(2, i))); }
 
@@ -50,8 +55,6 @@ namespace Airport_guidance
             //A list to keep the stops on the final route.
             List<int> vroute = new List<int>();
             //A queue for the lines of the route.
-            Queue<int> eroute = new Queue<int>();
-
 
             //Loop to make the entire algorithm run until the queue of destinations is empty.
             while (Destinations.Dest.Count != 0)
@@ -62,6 +65,8 @@ namespace Airport_guidance
                 //Setting the distance to all nodes to infinity and adding them all to Q.
                 for (int i = 0; i < vid.Length; i++)
                 {
+                    //Reset the shortest spanning tree.
+                    prev[i] = 0;
                     //Sets distance to all nodes to infinity.
                     dist[i] = int.MaxValue;
                     //Equivalent to putting all nodes in Q.
@@ -69,7 +74,6 @@ namespace Airport_guidance
                 }
 
                 //Making it so that there is to node before the source and the distance to the source is 0.
-                prev[vid[s]] = 0;
                 dist[vid[s]] = 0;
                 Q[vid[s]] = true;
                 //Sets the first node to check as the source.
@@ -90,7 +94,7 @@ namespace Airport_guidance
                                 prev[terminals[v].Item1] = vid[active];
                             }
                         }
-                        //Same as the above, only with the target switched.
+                        //Same as the above, only with the source and target switched.
                         if (Q[terminals[v].Item2] == false && terminals[v].Item1 == vid[active])
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
@@ -105,7 +109,7 @@ namespace Airport_guidance
                     for (int j = 0; j < dist.Length; j++)
                     {
                         //Finds next node to check by finding the shortest distance that is not in Q.
-                        if (dist[vid[j]] < dist[pos] && Q[vid[j]] != true) { pos = j; }
+                        if (dist[vid[j]] < dist[vid[pos]] && Q[vid[j]] != true) { pos = j; }
                     }
                     active = pos;
                     //"Removes the checked node from Q" by switching the bool, adding it to the shortest spanning tree.
@@ -116,18 +120,10 @@ namespace Airport_guidance
                 {
                     while (checker != vid[s])
                     {
-                        for (int k = 0; k < prev.Length; k++)
-                        {
-                            if (prev[k] == prev[checker])
-                            {
-                                //Checker is used as the INDEX of the array, but is assigned a VALUE from the array from the INDEX [k],
-                                //which points to the INDEX that holds the VALUE of the previous node on the route.
-                                temp.Push(prev[k]);
-                                checker = prev[k];
-                            }
-                        }
+                        temp.Push(prev[checker]);
+                        checker = prev[checker];
                     }
-                    for (int p = 0; p < temp.Count; p++) { vroute.Add(temp.Pop()); }
+                    for (int p = 0; p <= temp.Count; p++) { vroute.Add(temp.Pop()); }
                     s = active;
                 }
             }
@@ -135,13 +131,13 @@ namespace Airport_guidance
             {
                 for (int j = 0; j < terminals.Length; j++)
                 {
-                    if (vroute[i] != vroute[i - 1] && ((vroute[i] == terminals[j].Item1 &&
+                    if ((vroute[i] == terminals[j].Item1 &&
                         vroute[i - 1] == terminals[j].Item2) || (vroute[i] == terminals[j].Item2 &&
-                        vroute[i - 1] == terminals[j].Item1)))
-                    { eroute.Enqueue(j); }
+                        vroute[i - 1] == terminals[j].Item1))
+                    { Route.eroute.Enqueue(j); }
                 }
-                vroute.Clear();
             }
+            vroute.Clear();
         }
     }
 }
