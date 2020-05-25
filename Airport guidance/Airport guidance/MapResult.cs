@@ -85,34 +85,27 @@ namespace Airport_guidance
             shapefile5.Open("..\\..\\shapefiles\\navnodes.shp");
             intHandler5 = axMap1.AddLayer(shapefile5, false);
 
+            //Calls the Dijkstra algorithm
             Dijkstra.dijkstra(SetLocationMap.Loc, Destinations.Dest);
 
+            //Makes all lines initially hidden.
             for (int i = 0; i < shapefile4.NumShapes; i++) { shapefile4.set_ShapeIsHidden(i, true); }
-            //for (int j = 0; j < Dijkstra.Route.eroute.Count; j++) { shapefile4.set_ShapeIsHidden(Dijkstra.Route.eroute.Dequeue(), false); }
 
             routelength = 0;
 
             List<int> holder = new List<int>();
+            //Moves the lines from the route to a list, since it needs to be accessed multiple times.
             for (int j = 0; j <= Dijkstra.Route.eroute.Count; j++) { holder.Add(Dijkstra.Route.eroute.Dequeue()); }
+
 
             foreach (int line in holder)
             {
+                //Sets included lines from  the route to be shown rather than hidden.
                 shapefile4.set_ShapeIsHidden(line, false);
+                //Sums up the lengths of included lines.
                 routelength += Convert.ToDouble(shapefile4.get_CellValue(3, line));
             }
-            //for (int k = 0; k < holder.Count; k++)
-            //{
-            //    //for (int i = 0; i < shapefile4.NumShapes +1; i++)
-            //    //{
-            //    //    if (Convert.ToInt32(shapefile4.get_CellValue(0, i)) == holder[k])
-            //    //    {
-            //    //        shapefile4.set_ShapeIsHidden(i, false);
-            //    //        routelength = routelength + Convert.ToDouble(shapefile4.get_CellValue(3, i));
-            //    //    }
-            //    //}
-            //    shapefile4.set_ShapeIsHidden(holder[k], false);
-            //    routelength += Convert.ToDouble(shapefile4.get_CellValue(3, k));
-            //}
+            //Sets the label to show travel time. It is the sum of line lengths (so total route length) divided by 1.4 meters per second (average walking speed) divided by 60 seconds (to get minutes).
             timeest.Text = String.Format("Estimated time to reach destination: {0} minutes", Math.Round((routelength / 1.4) / 60, 1));
             holder.Clear();
         }

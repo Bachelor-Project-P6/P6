@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AxMapWinGIS;
 using MapWinGIS;
 
 namespace Airport_guidance
@@ -12,7 +8,7 @@ namespace Airport_guidance
     {
         public static string d = null;
 
-        public class Route
+        public static class Route
         {
             public static Queue<int> eroute { get; set; } = new Queue<int>();
         }
@@ -26,9 +22,9 @@ namespace Airport_guidance
 
             //To facilitate faster processing by accessing the shapefile databases as few times as possible,
             //all required values are loaded into arrays.
-            int[] vid = new int[vertex.NumShapes +1]; //Vertex id
+            int[] vid = new int[vertex.NumShapes + 1]; //Vertex id
             for (int i = 0; i < vid.Length; i++) { vid[i] = Convert.ToInt32(vertex.get_CellValue(1, i)); }
-            int[] eid = new int[edge.NumShapes +1]; //Edge id
+            int[] eid = new int[edge.NumShapes + 1]; //Edge id
             for(int i = 0; i < eid.Length; i++) { eid[i] = Convert.ToInt32(edge.get_CellValue(0, i)); }
             double[] length = new double[eid.Length]; //Edge length
             for (int i = 0; i < length.Length; i++) { length[i] = Convert.ToDouble(edge.get_CellValue(3, i)); }
@@ -46,10 +42,6 @@ namespace Airport_guidance
             bool[] Q = new bool[vid.Length];
             //Array pointing to the previous node on the route back to the source.
             int[] prev = new int[vid.Length];
-            //Variable to identify the last examined node.
-            int active = new int();
-            int pos = new int();
-            int checker = new int();
             //Stack for reversing the order of stops on the route, since they will initially be ordered end to start.
             Stack<int> temp = new Stack<int>();
             //A list to keep the stops on the final route.
@@ -68,7 +60,7 @@ namespace Airport_guidance
                     //Reset the shortest spanning tree.
                     prev[i] = 0;
                     //Sets distance to all nodes to infinity.
-                    dist[i] = int.MaxValue;
+                    dist[i] = double.MaxValue;
                     //Equivalent to putting all nodes in Q.
                     Q[i] = false;
                 }
@@ -76,8 +68,9 @@ namespace Airport_guidance
                 //Making it so that there is to node before the source and the distance to the source is 0.
                 dist[vid[s]] = 0;
                 Q[vid[s]] = true;
+                //Variable to identify the last examined node.
                 //Sets the first node to check as the source.
-                active = s;
+                int active = s;
 
                 //Loop that runs until it checks a node that has the desired "desttype".
                 while (type[active] != d)
@@ -85,37 +78,36 @@ namespace Airport_guidance
                     for (int v = 0; v < eid.Length; v++)
                     {
                         //Checks whether nodes are at the edge of our shortest spanning tree by checking if source is in Q.
-                        if (Q[terminals[v].Item1] == false && terminals[v].Item2 == vid[active])
+                        if (!Q[terminals[v].Item1] && terminals[v].Item2 == vid[active] && 
+                            length[v] + dist[vid[active]] < dist[terminals[v].Item1])
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (length[v] + dist[vid[active]] < dist[terminals[v].Item1])
-                            {
-                                dist[terminals[v].Item1] = length[v] + dist[vid[active]];
-                                prev[terminals[v].Item1] = vid[active];
-                            }
+                            dist[terminals[v].Item1] = length[v] + dist[vid[active]];
+                            prev[terminals[v].Item1] = vid[active];
                         }
                         //Same as the above, only with the source and target switched.
-                        if (Q[terminals[v].Item2] == false && terminals[v].Item1 == vid[active])
+                        if (!Q[terminals[v].Item2] && terminals[v].Item1 == vid[active] && 
+                            length[v] + dist[vid[active]] < dist[terminals[v].Item2])
                         {
                             //Compares new distance to visited nodes to previous shortest distance, and updates if the new one is shorter.
-                            if (length[v] + dist[vid[active]] < dist[terminals[v].Item2])
-                            {
                                 dist[terminals[v].Item2] = length[v] + dist[vid[active]];
                                 prev[terminals[v].Item2] = vid[active];
-                            }
                         }
                     }
-                    pos = 0;
-                    for (int j = 0; j < dist.Length; j++)
+                    int pos = vid.Length - 1;
+                    if (type[active] != d)
                     {
-                        //Finds next node to check by finding the shortest distance that is not in Q.
-                        if (dist[vid[j]] < dist[vid[pos]] && Q[vid[j]] != true) { pos = j; }
+                        for (int j = 0; j < dist.Length; j++)
+                        {
+                            //Finds next node to check by finding the shortest distance that is not in Q.
+                            if (dist[vid[j]] < dist[vid[pos]] && !Q[vid[j]]) { pos = j; }
+                        }
+                        active = pos;
+                        //"Removes the checked node from Q" by switching the bool, adding it to the shortest spanning tree.
+                        Q[vid[active]] = true;
                     }
-                    active = pos;
-                    //"Removes the checked node from Q" by switching the bool, adding it to the shortest spanning tree.
-                    Q[vid[active]] = true;
                 }
-                checker = vid[active];
+                int checker = vid[active];
                 if (type[active] == d)
                 {
                     while (checker != vid[s])
