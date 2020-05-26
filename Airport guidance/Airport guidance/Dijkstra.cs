@@ -112,12 +112,14 @@ namespace Airport_guidance
                 {
                     while (checker != vid[s])
                     {
-                        temp.Push(prev[checker]);
+                        temp.Push(checker);
                         checker = prev[checker];
                     }
-                    for (int p = 0; p <= temp.Count; p++) { vroute.Add(temp.Pop()); }
+                    temp.Push(checker);
+                    foreach (int id in temp) { vroute.Add(id); }
                     s = active;
                 }
+                temp.Clear();
             }
             for (int i = 1; i < vroute.Count; i++)
             {

@@ -93,12 +93,7 @@ namespace Airport_guidance
 
             routelength = 0;
 
-            List<int> holder = new List<int>();
-            //Moves the lines from the route to a list, since it needs to be accessed multiple times.
-            for (int j = 0; j <= Dijkstra.Route.eroute.Count; j++) { holder.Add(Dijkstra.Route.eroute.Dequeue()); }
-
-
-            foreach (int line in holder)
+            foreach (int line in Dijkstra.Route.eroute)
             {
                 //Sets included lines from  the route to be shown rather than hidden.
                 shapefile4.set_ShapeIsHidden(line, false);
@@ -107,7 +102,7 @@ namespace Airport_guidance
             }
             //Sets the label to show travel time. It is the sum of line lengths (so total route length) divided by 1.4 meters per second (average walking speed) divided by 60 seconds (to get minutes).
             timeest.Text = String.Format("Estimated time to reach destination: {0} minutes", Math.Round((routelength / 1.4) / 60, 1));
-            holder.Clear();
+            Dijkstra.Route.eroute.Clear();
         }
 
         private void MapResult_MouseMove(object sender, MouseEventArgs e)
