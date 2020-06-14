@@ -1,0 +1,79 @@
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe.config
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\bin\Debug\Airport guidance.pdb
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csprojAssemblyReference.cache
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SelectDest.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Properties.Resources.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.GenerateResource.cache
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.CoreCompileInputs.cache
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport guidance.exe
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport guidance.pdb
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Gate.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapResult.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapWindow.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Password.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.BadPassword.resources
+C:\Users\minrui\source\repos\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SetLocationMap.resources
+D:\C#补习\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe.config
+D:\C#补习\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe
+D:\C#补习\Airport guidance\Airport guidance\bin\Debug\Airport guidance.pdb
+D:\C#补习\Airport guidance\Airport guidance\bin\Debug\Interop.MapWinGIS.dll
+D:\C#补习\Airport guidance\Airport guidance\bin\Debug\AxInterop.MapWinGIS.dll
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csprojAssemblyReference.cache
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Interop.MapWinGIS.dll
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\AxInterop.MapWinGIS.dll
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.ResolveComReference.cache
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.BadPassword.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Gate.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapResult.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapWindow.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Password.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SelectDest.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Properties.Resources.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SetLocationMap.resources
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.GenerateResource.cache
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.CoreCompileInputs.cache
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.exe
+D:\C#补习\Airport guidance\Airport guidance\obj\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe.config
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\bin\Debug\AxInterop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csprojAssemblyReference.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\AxInterop.MapWinGIS.dll
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.ResolveComReference.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.BadPassword.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Gate.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapResult.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.MapWindow.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Password.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SelectDest.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.Properties.Resources.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.SetLocationMap.resources
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.csproj.GenerateResource.cache
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\routing application\Airport guidance\Airport guidance\obj\Debug\Airport_guidance.NoDest.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport guidance.csprojAssemblyReference.cache
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\AxInterop.MapWinGIS.dll
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport guidance.csproj.ResolveComReference.cache
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.BadPassword.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.Gate.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.MapResult.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.MapWindow.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.NoDest.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.Password.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.SelectDest.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.Properties.Resources.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport_guidance.SetLocationMap.resources
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport guidance.csproj.GenerateResource.cache
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\obj\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\bin\Debug\Airport guidance.exe.config
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\bin\Debug\Airport guidance.exe
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\bin\Debug\Airport guidance.pdb
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\bin\Debug\Interop.MapWinGIS.dll
+C:\Users\larsk\Desktop\Routing Billund\Airport guidance Billund\Airport guidance\bin\Debug\AxInterop.MapWinGIS.dll
